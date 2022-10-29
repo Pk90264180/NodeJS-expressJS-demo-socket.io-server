@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+
+import * as io from 'socket.io-client/dist/socket.io.js';
+const socket = io.connect('https://backend-experimental01.herokuapp.com/');
 
 function App() {
+  const [id, setId] = useState('');
+  const [status, setStatus] = useState('');
+  socket.on('send_message', (arg) => {
+    console.log(arg.id); // world
+    setId(arg.id);
+    setStatus(arg.status);
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="middle">
+        <h1>Id: {id}</h1>
+        <h2>Status: {status}</h2>
+      </div>
+    </>
   );
 }
 
