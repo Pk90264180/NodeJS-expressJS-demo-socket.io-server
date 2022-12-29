@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import * as io from 'socket.io-client/dist/socket.io.js';
-const socket = io.connect('https://backend-experimental01.herokuapp.com/');
+const socket = io.connect('https://backend-exeprimental.onrender.com/');
 
 function App() {
   const [id, setId] = useState('');
